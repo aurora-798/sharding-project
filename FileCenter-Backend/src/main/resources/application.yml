@@ -1,0 +1,36 @@
+spring:
+  application:
+    name: FileCenter-Backend
+  servlet:
+    multipart:
+      max-file-size: -1
+      max-request-size: -1
+  datasource:
+    dynamic:
+      primary: master
+      strict: false
+      datasource:
+        master:
+          driver-class-name: com.mysql.cj.jdbc.Driver
+          url: jdbc:mysql://101.42.240.114:3306/file?useUnicode=true&characterEncoding=UTF-8&allowPublicKeyRetrieval=true&useSSL=false
+          username: root
+          password: xing520707
+        remote:
+          driver-class-name: com.mysql.cj.jdbc.Driver
+          url: jdbc:mysql://101.42.240.114:3306/easybbs?useUnicode=true&characterEncoding=UTF-8&allowPublicKeyRetrieval=true&useSSL=false
+          username: root
+          password: xing520707
+  mvc:
+    static-path-pattern: /upload/**
+  web:
+    resources:
+      static-locations: file:/www/data/
+server:
+  port: 9999
+  tomcat:
+    connection-timeout: -1
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  mapper-locations: classpath:mapper/*.xml

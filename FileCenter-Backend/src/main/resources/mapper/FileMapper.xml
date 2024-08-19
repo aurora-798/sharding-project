@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--绑定接口-->
+<mapper namespace="com.xing.mapper.FileMapper">
+    <select id="selectByHash" resultType="com.xing.model.File">
+        select id,file_name,user_id,`size`,hash,suffix,category_id,download_count,is_delete,create_time,update_time
+             from files where hash = #{hash}
+    </select>
+
+    <update id="CustomUpdateIsDeleteById">
+        update files set is_Delete = #{isDelete},size = #{size},suffix = #{suffix},category_id = #{categoryId},
+                         download_count = #{downloadCount},create_time = #{createTime},update_time = #{updateTime}
+                     where id = #{id}
+    </update>
+    <update id="PlusDownLoadCount">
+        update files set download_count = #{downloadCount} where id = #{id}
+    </update>
+</mapper>
